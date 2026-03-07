@@ -4,17 +4,17 @@ estoque = {}
 
 # Função para cadastrar produtos
 def cadastrar_produto():
-    print("\n📦 CADASTRO DE PRODUTOS")
+    print("\n CADASTRO DE PRODUTOS")
     nome = input("Nome do produto: ").strip()
     if not nome:
-        print("❌ O nome do produto não pode estar vazio.")
+        print(" O nome do produto não pode estar vazio.")
         return
     try:
         preco = float(input("Preço (R$): "))
         tipo = input("Tipo de venda (Unidade/Quilo): ").capitalize()
         quantidade = float(input(f"Quantidade em {tipo.lower()}: "))
     except ValueError:
-        print("⚠️ Valor inválido! Digite números válidos para preço e quantidade.")
+        print(" Valor inválido! Digite números válidos para preço e quantidade.")
         return
 
     codigo = len(estoque) + 1
@@ -24,28 +24,28 @@ def cadastrar_produto():
         "tipo": tipo,
         "quantidade": quantidade
     }
-    print(f"✅ Produto '{nome}' cadastrado com sucesso! Código: {codigo}")
+    print(f" Produto '{nome}' cadastrado com sucesso! Código: {codigo}")
 
 
 # Função para consultar o estoque
 def consultar_estoque():
-    print("\n📋 CONSULTA DE ESTOQUE")
+    print("\n CONSULTA DE ESTOQUE")
     if estoque:
         for codigo, produto in estoque.items():
             print(f"Código: {codigo} | Nome: {produto['nome']} | "
                   f"Preço: R${produto['preco']:.2f} | "
                   f"Quantidade: {produto['quantidade']} {produto['tipo']}")
     else:
-        print("ℹ️ Nenhum produto cadastrado até o momento.")
+        print(" Nenhum produto cadastrado até o momento.")
 
 
 # Função para realizar compras
 def realizar_compra():
-    print("\n🛒 REALIZAR COMPRA")
+    print("\n REALIZAR COMPRA")
     try:
         codigo = int(input("Digite o código do produto: "))
     except ValueError:
-        print("⚠️ Código inválido!")
+        print(" Código inválido!")
         return
 
     if codigo in estoque:
@@ -54,18 +54,18 @@ def realizar_compra():
         try:
             qtd = float(input(f"Quantidade ({produto['tipo']}): "))
         except ValueError:
-            print("⚠️ Quantidade inválida!")
+            print(" Quantidade inválida!")
             return
 
         if qtd <= produto["quantidade"]:
             total = qtd * produto["preco"]
             produto["quantidade"] -= qtd
-            print(f"💰 Compra realizada com sucesso! Total: R${total:.2f}")
+            print(f" Compra realizada com sucesso! Total: R${total:.2f}")
             print(f"Estoque atualizado: {produto['quantidade']} {produto['tipo']}(s) restantes.")
         else:
-            print("❌ Estoque insuficiente para a quantidade solicitada.")
+            print(" Estoque insuficiente para a quantidade solicitada.")
     else:
-        print("⚠️ Produto não encontrado. Verifique o código e tente novamente.")
+        print(" Produto não encontrado. Verifique o código e tente novamente.")
 
 
 # Função principal com menu
@@ -87,12 +87,13 @@ def menu_principal():
         elif opcao == "3":
             realizar_compra()
         elif opcao == "4":
-            print("👋 Saindo do sistema...")
+            print(" Saindo do sistema...")
             break
         else:
-            print("❌ Opção inválida. Tente novamente.")
+            print(" Opção inválida. Tente novamente.")
 
 
 # Execução do sistema
 if __name__ == "__main__":
     menu_principal()
+
